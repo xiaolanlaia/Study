@@ -9,6 +9,11 @@ buildscript {
         google()
         jcenter()
         mavenCentral()
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'https://maven.aliyun.com/repository/jcenter'}
+
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.2'
@@ -25,6 +30,11 @@ allprojects {
         google()
         jcenter()
         mavenCentral()
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'https://maven.aliyun.com/repository/jcenter'}
+
     }
 }
 

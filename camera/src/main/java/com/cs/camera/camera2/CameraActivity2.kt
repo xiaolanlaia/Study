@@ -1,5 +1,6 @@
 package com.cs.camera.camera2
 
+import android.graphics.Bitmap
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.view.WindowManager

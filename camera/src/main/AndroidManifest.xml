@@ -18,26 +18,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name="com.cs.camera.MainActivity">
+        <activity
+            android:name="com.cs.camera.camera2.CameraActivity2"
+            android:launchMode="singleTask" >
+
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.cs.camera.CaptureActivity" />
-        <activity
-            android:name="com.cs.camera.camera1.CameraActivity"
-            android:launchMode="singleTask" />
-        <activity
-            android:name="com.cs.camera.camera2.CameraActivity2"
-            android:launchMode="singleTask" />
 
-        <activity
-            android:name="com.cs.camera.camera2.CameraActivity2Face"
-            android:launchMode="singleTask" />
-
-        <activity android:name="com.cs.camera.test.TestActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

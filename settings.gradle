@@ -1,1 +1,1 @@
-include ':customizeview', ':app', ':statusbar', ':camera', ':agera', ':bitmap', ':recyclerview', "common"
+include ':camera', "common"

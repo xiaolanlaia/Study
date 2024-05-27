@@ -199,6 +199,7 @@ class Camera2Helper(val mActivity: Activity, private val mTextureView: TextureVi
 
         val surface = Surface(mTextureView.surfaceTexture)
         captureRequestBuilder?.addTarget(surface)  // 将CaptureRequest的构建器与Surface对象绑定在一起
+//        captureRequestBuilder?.addTarget(mImageReader!!.surface)  // 将CaptureRequest的构建器与Surface对象绑定在一起
         captureRequestBuilder?.set(CaptureRequest.CONTROL_AE_MODE, CaptureRequest.CONTROL_AE_MODE_ON_AUTO_FLASH)      // 闪光灯
         captureRequestBuilder?.set(CaptureRequest.CONTROL_AF_MODE, CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_PICTURE) // 自动对焦
 
