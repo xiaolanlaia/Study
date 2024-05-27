@@ -31,10 +31,10 @@ import kotlin.collections.ArrayList
 class Camera2Helper(val mActivity: Activity, private val mTextureView: TextureView) {
 
     companion object {
-        const val PREVIEW_WIDTH = 720                                         //预览的宽度
+        const val PREVIEW_WIDTH = 960                                         //预览的宽度
         const val PREVIEW_HEIGHT = 1280                                       //预览的高度
-        const val SAVE_WIDTH = 720                                            //保存图片的宽度
-        const val SAVE_HEIGHT = 1280                                          //保存图片的高度
+        const val SAVE_WIDTH = 1080                                            //保存图片的宽度
+        const val SAVE_HEIGHT = 1920                                          //保存图片的高度
     }
 
     private lateinit var mCameraManager: CameraManager
@@ -176,7 +176,7 @@ class Camera2Helper(val mActivity: Activity, private val mTextureView: TextureVi
             override fun onOpened(camera: CameraDevice) {
                 log("onOpened")
                 mCameraDevice = camera
-                createCaptureSession(camera)
+                createCaptureSession()
             }
 
             override fun onDisconnected(camera: CameraDevice) {
@@ -193,24 +193,24 @@ class Camera2Helper(val mActivity: Activity, private val mTextureView: TextureVi
     /**
      * 创建预览会话
      */
-    private fun createCaptureSession(cameraDevice: CameraDevice) {
+    private fun createCaptureSession() {
 
-        val captureRequestBuilder = cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW)
+        val captureRequestBuilder = mCameraDevice?.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW)
 
         val surface = Surface(mTextureView.surfaceTexture)
-        captureRequestBuilder.addTarget(surface)  // 将CaptureRequest的构建器与Surface对象绑定在一起
-        captureRequestBuilder.set(CaptureRequest.CONTROL_AE_MODE, CaptureRequest.CONTROL_AE_MODE_ON_AUTO_FLASH)      // 闪光灯
-        captureRequestBuilder.set(CaptureRequest.CONTROL_AF_MODE, CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_PICTURE) // 自动对焦
+        captureRequestBuilder?.addTarget(surface)  // 将CaptureRequest的构建器与Surface对象绑定在一起
+        captureRequestBuilder?.set(CaptureRequest.CONTROL_AE_MODE, CaptureRequest.CONTROL_AE_MODE_ON_AUTO_FLASH)      // 闪光灯
+        captureRequestBuilder?.set(CaptureRequest.CONTROL_AF_MODE, CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_PICTURE) // 自动对焦
 
         // 为相机预览，创建一个CameraCaptureSession对象
-        cameraDevice.createCaptureSession(arrayListOf(surface, mImageReader?.surface), object : CameraCaptureSession.StateCallback() {
+        mCameraDevice?.createCaptureSession(arrayListOf(surface, mImageReader?.surface), object : CameraCaptureSession.StateCallback() {
             override fun onConfigureFailed(session: CameraCaptureSession) {
                 mActivity.toast("开启预览会话失败！")
             }
 
             override fun onConfigured(session: CameraCaptureSession) {
                 mCameraCaptureSession = session
-                session.setRepeatingRequest(captureRequestBuilder.build(), mCaptureCallBack, mCameraHandler)
+                session.setRepeatingRequest(captureRequestBuilder!!.build(), mCaptureCallBack, mCameraHandler)
             }
 
         }, mCameraHandler)
